@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +25,13 @@
         <div class="row">
             <h4>My Day</h4>
             <p class="text-muted">{% now "jS F Y" %}</p>
+
             <div class="col-md-7 col-lg-7" style="height: 450px; overflow: scroll;">
                 <!-- List of all the tasks for the day -->
+                {% for task in tasks_false %}
                 <div class="card m-1">
                     <div class="card-body">
-                        This is some Task
+                        {{task.task}}
                         <span style="position: relative; float: right;">
                             <a class="btn btn-success"><i class="fa fa-check"></i> Mark as Done</a>
                             <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
@@ -36,16 +39,18 @@
                         </span>
                     </div>
                 </div>
-               
+                {% endfor %}   
             </div>
             <div class="col-md-5 col-lg-5">
                 <h5>Completed Tasks</h5>
                 <!-- List of all the tasks that have completed -->
+                {% for taskk in tasks_true %}
                 <div class="card m-1">
                     <div class="card-body">
-                        This is the completed task.
+                        {{taskk.task}}
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
         <div class="row">
