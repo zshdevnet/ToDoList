@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from todos.models import Task
 
 def home(request):
-    tasks_false = Task.objects.filter(is_completed=False)
+    tasks_false = Task.objects.filter(is_completed=False).order_by('updated_at')
     tasks_true = Task.objects.filter(is_completed=True)
     context = {
         'tasks_false' : tasks_false,
