@@ -1,5 +1,1 @@
 env
-.env
-todos/__pycache__
-db.sqlite3
-todos/migrations
