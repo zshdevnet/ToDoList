@@ -13,6 +13,27 @@ def doneTask(request, pk):
     task.save()
     return redirect('home')
 
-def delTask(request):
-    pass
+def undoneTask(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.is_completed = False
+    task.save()
+    return redirect('home')
+
+def editTask(request, pk):
+    getTask = get_object_or_404(Task, pk=pk)
+    if request.method == 'POST':
+        new_task = request.POST['task']
+        getTask.task = new_task
+        getTask.save()
+        return redirect('home')
+    else:
+        context = {
+            'getTask': getTask,
+        }
+    return render(request, 'editTask.html', context)
+
+
+def delTask(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.delete()
     return redirect('home')
